@@ -2,7 +2,7 @@ const options = document.querySelectorAll(".options");
 
 let numDays = 0;
 const maxDays = 100;
-const food_new_bunny=5;
+const food_new_bunny=10;
 const gan_comer=5;
 let numBunny = 0;
 let numFood = 0;
