@@ -67,6 +67,11 @@ options.forEach((option) => {
             spawn(1,1);
             predator();
         }
+        /*
+        else if (pInput === "flecha") {
+            recTimeout()
+        }
+        */
     });
 });
 function spawn(numFood, numBunny) {
@@ -156,7 +161,7 @@ function bunnyMoves(x){
 
 function infiniteFood() {
     numBunny = 1;
-    numFood = 2;
+    numFood = 10;
     spawn(numFood,numBunny);
     recTimeout();
 }
@@ -164,16 +169,22 @@ function infiniteFood() {
 function recTimeout() {
     if(day < maxDays) {
         var reproduceBunny = 0;
-        paintBoard();
+        var B=[];
         for (var i = 0; i < 64; i++) {
-
             if(board[i] === 1) {
+                B.push(i)
+            }
+        }
+        while(B.length>0){
+            var i=B.pop();
+            //if(board[i] === 1) {
                 bunny_food[i]--;
                 if(bunny_food[i] === 0){
                     board[i] = 0; //si el bunny no menja mor
                 }
                 else {
                     bunnyMoves(i);
+                    
                 }
                 //console.log("pos");
                 console.log(i);
@@ -183,7 +194,8 @@ function recTimeout() {
                     board[i] = 0; //si el bunny no menja mor
                     //console.log("Dead Bunny");
                 }
-            }
+            //}
+            /*
             if(board[i] === 3) {
                 //el bunny es reprodueix i el desAlimentem en 1
                 //bunnyMoves(i);
@@ -191,6 +203,7 @@ function recTimeout() {
                 bunny_food[i]-=2;
                 if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
             } 
+            */
         }
         var newFood = 0;
         /*
@@ -203,6 +216,7 @@ function recTimeout() {
         day=day+1;
         setTimeout(recTimeout,1000);
     }
+    paintBoard();
 }
 
 function limitedFood() {
