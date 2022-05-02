@@ -1,8 +1,29 @@
 const options = document.querySelectorAll(".options");
 
 let numDays = 0;
+const maxDays = 100;
 
+cell_food = [ 
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+]
 
+cell_bunny = [ 
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+]
 
 let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
@@ -30,10 +51,27 @@ options.forEach((option) => {
 });
 
 function infiniteFood() {
+    
+    spawn(cell_bunny,10);
+
+    for(var i = 0; i < maxDays; i++) {
+        paintBoard();
+    }
     var i =0;
     document.getElementById("img-cell-" + i).src = redBunny;
 }
 
 function limitedFood() {
+
+}
+
+function spawn(mat,numSpawns) {
     
+}
+
+function paintBorard() {
+    for(var i = 0; i < 64; ++i) {
+        if(cell_food === 1) document.getElementById("img-cell-" + i).src = food;
+        else if (cell_bunny === 1) document.getElementById("img-cell-" + i).src = bunny;
+    }
 }
