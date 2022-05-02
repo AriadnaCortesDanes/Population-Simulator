@@ -15,6 +15,22 @@ board = [
     0, 0, 0, 0, 0 ,0 ,0 , 0,
 ]
 
+/*
+si un bunny arriba a aliment 0, mor.
+si un bunny s'alimenta bunny_food val 10.
+bunny_food decreix un 1 cada dia.
+*/
+bunny_food = [ 
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+    5, 5, 5, 5, 5, 5 ,5 , 5,
+]
+
 let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 let bunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025641_960_720.png";
@@ -42,16 +58,24 @@ options.forEach((option) => {
 
 function infiniteFood() {
     spawn(10,10);
-    recTimeout(0);
+    recTimeout(1);
 }
 
 function recTimeout(day) {
     if(day > maxDays) return;
+    var reproduceBunny = 0;
 
     paintBoard();
     for (var i = 0; i < 64; i++) {
-        if(board[i] === 1)
+
+        if(board[i] === 1) bunnyMoves(i);
+        if(board[i] === 3) {
+            //el bunny es reprodueix i el desAlimentem en 1
+            reproduceBunny++;
+        } 
     }
+
+    spawn(0,reproduceBunny);
     setTimeout(recTimeout(day+1),100);
 }
 
