@@ -2,14 +2,15 @@ const options = document.querySelectorAll(".options");
 
 let numDays = 0;
 const maxDays = 100;
+let numBunny = 0;
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
 board = [ 
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 1, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,1 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
@@ -63,26 +64,38 @@ options.forEach((option) => {
 });
 
 function infiniteFood() {
-    spawn(10,10);
+    numBunny = 10;
+    //spawn(10,numBunny);
+
     recTimeout(1);
 }
 
 function recTimeout(day) {
-    if(day > maxDays) return;
-    var reproduceBunny = 0;
 
-    paintBoard();
-    for (var i = 0; i < 64; i++) {
+    if(day < maxDays) {
+        var reproduceBunny = 0;
+        console.log("here "+ day );
 
-        if(board[i] === 1) bunnyMoves(i);
-        if(board[i] === 3) {
-            //el bunny es reprodueix i el desAlimentem en 1
-            reproduceBunny++;
-        } 
+        paintBoard();
+        for (var i = 0; i < 64; i++) {
+
+            if(board[i] === 1) {
+                //bunnyMoves(i);
+                bunny_food[i]--;
+                //if(bunny_food[i] === 0) board[i] = 0; //si el bunny no menja mor
+            }
+            if(board[i] === 3) {
+                //el bunny es reprodueix i el desAlimentem en 1
+                reproduceBunny++;
+                bunny_food[i]--;
+                if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
+            } 
+        }
+
+        numBunny +=reproduceBunny;
+        //spawn(0,reproduceBunny);
+        setTimeout(recTimeout(day+1),100);
     }
-
-    spawn(0,reproduceBunny);
-    setTimeout(recTimeout(day+1),100);
 }
 
 function limitedFood() {
