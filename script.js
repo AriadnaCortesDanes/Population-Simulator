@@ -52,13 +52,11 @@ options.forEach((option) => {
         if (pInput === "InfiniteFood") {
             day=0;
             iniBoard();
-            //spawn(1,1);
             infiniteFood();
         }
         else if (pInput === "LimitedFood") {
             day=0;
             iniBoard();
-            spawn(1,1);
             limitedFood();
         }
         else if (pInput === "Predator") {
@@ -160,10 +158,7 @@ function bunnyMoves(x){
 }
 
 function infiniteFood() {
-    numBunny = 1;
-    numFood = 10;
-    spawn(numFood,numBunny);
-    recTimeout();
+    
 }
 
 function recTimeout() {
@@ -178,24 +173,28 @@ function recTimeout() {
         while(B.length>0){
             var i=B.pop();
             //if(board[i] === 1) {
-                bunny_food[i]--;
-                if(bunny_food[i] === 0){
-                    board[i] = 0; //si el bunny no menja mor
+            bunny_food[i]--;
+            if(bunny_food[i] === 0){
+                board[i] = 0; //si el bunny no menja mor
+            }
+            else {
+                bunnyMoves(i);
+                if(bunny_food[i] > 15) {
+                    //Aixo dobla el bunny pero no li treu vida!
+                    reproduceBunny++;
                 }
-                else {
-                    bunnyMoves(i);
-                    
-                }
-                //console.log("pos");
-                console.log(i);
-                //console.log("comida");
-                console.log(bunny_food[i]);
-                if(bunny_food[i] === 0){
-                    board[i] = 0; //si el bunny no menja mor
-                    //console.log("Dead Bunny");
-                }
-            //}
+            }
+            //console.log("pos");
+            console.log(i);
+            //console.log("comida");
+            console.log(bunny_food[i]);
             /*
+            if(bunny_food[i] === 0){
+                board[i] = 0; //si el bunny no menja mor
+                //console.log("Dead Bunny");
+            }
+            //}
+            
             if(board[i] === 3) {
                 //el bunny es reprodueix i el desAlimentem en 1
                 //bunnyMoves(i);
@@ -205,7 +204,7 @@ function recTimeout() {
             } 
             */
         }
-        var newFood = 0;
+        var newFood = 1;
         /*
         numBunny +=reproduceBunny;
         var newFood = 0;
@@ -214,11 +213,19 @@ function recTimeout() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout,1000);
+        setTimeout(recTimeout,500);
+    }
+    else {
+        numBunny = 0;
+        numFood = 0;
+        iniBoard();
     }
     paintBoard();
 }
 
 function limitedFood() {
-
+    numBunny = 3;
+    numFood = 10;
+    spawn(numFood,numBunny);
+    recTimeout();
 }
