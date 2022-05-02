@@ -128,3 +128,4 @@ function iniBoard() {
         board[i]=0;
     }
 }
+
