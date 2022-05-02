@@ -3,6 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 let numBunny = 0;
+let numFood = 0;
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
 board = [ 
@@ -22,14 +23,14 @@ si un bunny s'alimenta bunny_food val 10.
 bunny_food decreix un 1 cada dia.
 */
 bunny_food = [ 
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
-    5, 5, 5, 5, 5, 5 ,5 , 5,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
 ]
 
 let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"
@@ -65,7 +66,8 @@ options.forEach((option) => {
 
 function infiniteFood() {
     numBunny = 10;
-    spawn(10,numBunny);
+    numFood = 10;
+    spawn(numFood,numBunny);
     recTimeout(1);
 }
 
@@ -85,14 +87,17 @@ function recTimeout(day) {
             }
             if(board[i] === 3) {
                 //el bunny es reprodueix i el desAlimentem en 1
+                //bunnyMoves(i);
                 reproduceBunny++;
-                bunny_food[i]--;
+                bunny_food[i]-=2;
                 if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
             } 
         }
 
         numBunny +=reproduceBunny;
-        spawn(0,reproduceBunny);
+        var newFood = 0;
+        numFood += newFood;
+        spawn(newFood,reproduceBunny);
         setTimeout(recTimeout,100,day+1);
     }
 }
