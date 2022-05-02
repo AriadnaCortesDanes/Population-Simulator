@@ -3,6 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 const food_new_bunny=5;
+const gan_comer=5;
 let numBunny = 0;
 let numFood = 0;
 let day=0;
@@ -151,6 +152,18 @@ function paintBoard() {
         if(board[i] === 3)document.getElementById("img-cell-" + i).src = redBunny;
     }
 }
-function move(x,x1,tip){
-
+function move(x,x1){
+    if(board[x1]===0){
+        board[x]=0;
+        board[x1]=1;
+        bunny_food[x1]=bunny_food[x];
+        bunny_food[x]=0;
+    }
+    else if(board[x1] === 2){
+        --numFood;
+        board[x]=0;
+        board[x1]=1;
+        bunny_food[x1]=bunny_food[x]+gan_comer;
+        bunny_food[x]=0;
+    }
 }
