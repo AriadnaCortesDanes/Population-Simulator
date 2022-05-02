@@ -24,7 +24,7 @@ options.forEach((option) => {
 
 function infiniteFood() {
     var i =0;
-    document.getElementById("img-cell" + i+ "-" + i).src = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
+    document.getElementById("img-cell-" + i).src = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 }
 
 function limitedFood() {
