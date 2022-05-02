@@ -3,7 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 
-// 0 if grass, 1 if bunny, 2 if food
+// 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
 board = [ 
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
@@ -42,10 +42,17 @@ options.forEach((option) => {
 
 function infiniteFood() {
     spawn(10,10);
+    recTimeout(0);
+}
 
-    for(var i = 0; i < maxDays; i++) {
-        paintBoard();
+function recTimeout(day) {
+    if(day > maxDays) return;
+
+    paintBoard();
+    for (var i = 0; i < 64; i++) {
+        if(board[i] === 1)
     }
+    setTimeout(recTimeout(day+1),100);
 }
 
 function limitedFood() {
@@ -58,8 +65,9 @@ function spawn(numFood, numBunny) {
 
 function paintBoard() {
     for(var i = 0; i < 64; i++) {
-        if(board[i] === 1) document.getElementById("img-cell-" + i).src = food;
-        else if (board[i] === 2) document.getElementById("img-cell-" + i).src = bunny;
+        if(board[i] === 1) document.getElementById("img-cell-" + i).src = bunny;
+        else if (board[i] === 2) document.getElementById("img-cell-" + i).src = food;
+        else if (board[i] === 3) document.getElementById("img-cell-" + i).src = redBunny;
         else document.getElementById("img-cell-" + i).src = grass;
     }
 }
