@@ -43,19 +43,6 @@ options.forEach((option) => {
     });
 });
 
-function random_in(){
-    for (let l = 0; l < 64; l++) {
-        document.getElementById("img-cell-" + i).src = grass;
-    }
-    var i=Math.floor(Math.random()*64);
-    document.getElementById("img-cell-" + i).src = food;
-    var j;
-    while(i==j){
-        j=Math.floor(Math.random()*64);
-    }
-    document.getElementById("img-cell-" + j).src = bunny;
-}
-
 function infiniteFood() {
     
     spawn(board,10,10);
@@ -71,7 +58,24 @@ function limitedFood() {
 
 }
 
-function spawn(board, numFood, numBunny) {
+function spawn(numFood, numBunny) {
+    for (let l = 0; l < 64; l++) {
+        document.getElementById("img-cell-" + l).src = grass;
+    }
+    for (let l = 0; l < numFood; l++) {
+        var i=Math.floor(Math.random()*64);
+        while(board[i]===0){
+            bord[i]=1;
+            document.getElementById("img-cell-" + i).src = grass;
+        }
+    }
+    for (let l = 0; l < numBunny; l++) {
+        var i=Math.floor(Math.random()*64);
+        while(board[i]===0){
+            bord[i]=2;
+            document.getElementById("img-cell-" + i).src = grass;
+        }
+    }
     
 }
 
