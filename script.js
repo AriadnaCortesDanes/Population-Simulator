@@ -85,7 +85,10 @@ function recTimeout() {
             if(board[i] === 1) {
                 //bunnyMoves(i);
                 bunny_food[i]--;
-                if(bunny_food[i] === 0) board[i] = 0; //si el bunny no menja mor
+                if(bunny_food[i] === 0){
+                    board[i] = 0; //si el bunny no menja mor
+                    console.log("Dead Bunny");
+                }
             }
             if(board[i] === 3) {
                 //el bunny es reprodueix i el desAlimentem en 1
@@ -95,12 +98,14 @@ function recTimeout() {
                 if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
             } 
         }
+        var newFood = 0;
         /*
         numBunny +=reproduceBunny;
         var newFood = 0;
         numFood += newFood;
         */
         spawn(newFood,reproduceBunny);
+        console.log(day);
         day=day+1;
         setTimeout(recTimeout,100);
     }
@@ -125,10 +130,10 @@ function spawn(numFood, numBunny) {
             i=Math.floor(Math.random()*64);
         }
         board[i]=1;
-        food[i]=food_new_bunny;
+        bunny_food[i]=food_new_bunny;
         document.getElementById("img-cell-" + i).src = bunny;
+        console.log("spawn Bunny");
     }
-    
 }
 
 function iniBoard() {
