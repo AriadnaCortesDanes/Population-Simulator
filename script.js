@@ -29,56 +29,37 @@ options.forEach((option) => {
         let cInput = cOptions[Math.floor(Math.random() * 4)];*/
 
         if (pInput === "InfiniteFood") {
-            random_in();
             infiniteFood();
         }
         else if (pInput === "LimitedFood") {
-            random_in();
             limitedFood();
         }
         else if (pInput === "Predator") {
-            random_in();
             predator();
         }
     });
 });
 
-function random_in(){
-    for (let l = 0; l < 64; l++) {
-        document.getElementById("img-cell-" + i).src = grass;
-    }
-    var i=Math.floor(Math.random()*64);
-    document.getElementById("img-cell-" + i).src = food;
-    var j;
-    while(i==j){
-        j=Math.floor(Math.random()*64);
-    }
-    document.getElementById("img-cell-" + j).src = bunny;
-}
-
 function infiniteFood() {
-    
-    spawn(board,10,10);
+    spawn(10,10);
 
     for(var i = 0; i < maxDays; i++) {
         paintBoard();
     }
-    var i =0;
-    document.getElementById("img-cell-" + i).src = redBunny;
 }
 
 function limitedFood() {
 
 }
 
-function spawn(board, numFood, numBunny) {
+function spawn(numFood, numBunny) {
     
 }
 
-function paintBorard() {
-    for(var i = 0; i < 64; ++i) {
-        if(board === 1) document.getElementById("img-cell-" + i).src = food;
-        else if (board === 2) document.getElementById("img-cell-" + i).src = bunny;
+function paintBoard() {
+    for(var i = 0; i < 64; i++) {
+        if(board[i] === 1) document.getElementById("img-cell-" + i).src = food;
+        else if (board[i] === 2) document.getElementById("img-cell-" + i).src = bunny;
         else document.getElementById("img-cell-" + i).src = grass;
     }
 }
