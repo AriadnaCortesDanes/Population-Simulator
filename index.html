@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>PopulationSimulator</title>
+</head>
+
+<body>
+    <div class="contenedor-cells">
+        <!-- Display del boto de HOW TO USE-->
+        <button id="btn-abrir-popup" class="btn-abrir-popup">
+            <span class="button__text"> How to use? </span>
+            <span class="button__icon">
+                <ion-icon name="help-circle-outline"></ion-icon>
+            </span>
+        </button>    
+
+        <!-- Display de la matriu de posicions del taulell -->
+         <!-- La matriu del taulell es una matriu de botons numerats com "cell-x amb x entre 0 i 63" 
+        Les seves respectives imatges estan numerades com img-cell-x -->
+        <button id="cell-0" class="cell"> 
+            <img id="img-cell-0" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-1" class="cell"> 
+        <img id="img-cell-1" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-2" class="cell"> 
+            <img id="img-cell-2" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-3" class="cell"> 
+        <img id="img-cell-3" src="https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025641_960_720.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-4" class="cell"> 
+            <img id="img-cell-4" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-5" class="cell"> 
+            <img id="img-cell-5" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-6" class="cell"> 
+            <img id="img-cell-6" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-7" class="cell"> 
+            <img id="img-cell-7" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-8" class="cell"> 
+            <img id="img-cell-8" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-9" class="cell"> 
+            <img id="img-cell-9" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-10" class="cell"> 
+            <img id="img-cell-10" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-11" class="cell"> 
+        <img id="img-cell-11" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-12" class="cell"> 
+            <img id="img-cell-12" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-13" class="cell"> 
+        <img id="img-cell-13" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-14" class="cell"> 
+            <img id="img-cell-14" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-15" class="cell"> 
+            <img id="img-cell-15" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-16" class="cell"> 
+            <img id="img-cell-16" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-17" class="cell"> 
+            <img id="img-cell-17" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-18" class="cell"> 
+            <img id="img-cell-18" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-19" class="cell"> 
+            <img id="img-cell-19" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-20" class="cell"> 
+            <img id="img-cell-20" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-21" class="cell"> 
+        <img id="img-cell-21" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-22" class="cell"> 
+            <img id="img-cell-22" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-23" class="cell"> 
+        <img id="img-cell-23" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-24" class="cell"> 
+            <img id="img-cell-24" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-25" class="cell"> 
+            <img id="img-cell-25" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-26" class="cell"> 
+            <img id="img-cell-26" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-27" class="cell"> 
+            <img id="img-cell-27" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-28" class="cell"> 
+            <img id="img-cell-28" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-29" class="cell"> 
+            <img id="img-cell-29" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-30" class="cell"> 
+            <img id="img-cell-30" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-31" class="cell"> 
+        <img id="img-cell-31" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-32" class="cell"> 
+            <img id="img-cell-32" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-33" class="cell"> 
+        <img id="img-cell-33" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-34" class="cell"> 
+            <img id="img-cell-34" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-35" class="cell"> 
+            <img id="img-cell-35" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-36" class="cell"> 
+            <img id="img-cell-36" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-37" class="cell"> 
+            <img id="img-cell-37" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-38" class="cell"> 
+            <img id="img-cell-38" src="https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-39" class="cell"> 
+            <img id="img-cell-39" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-40" class="cell"> 
+            <img id="img-cell-40" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-41" class="cell"> 
+        <img id="img-cell-41" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-42" class="cell"> 
+            <img id="img-cell-42" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-43" class="cell"> 
+        <img id="img-cell-43" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-44" class="cell"> 
+            <img id="img-cell-44" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-45" class="cell"> 
+            <img id="img-cell-45" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-46" class="cell"> 
+            <img id="img-cell-46" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-47" class="cell"> 
+            <img id="img-cell-47" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-48" class="cell"> 
+            <img id="img-cell-48" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-49" class="cell"> 
+            <img id="img-cell-49" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-50" class="cell"> 
+            <img id="img-cell-50" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-51" class="cell"> 
+        <img id="img-cell-51" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button>
+
+        <button id="cell-52" class="cell"> 
+            <img id="img-cell-52" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+       </button>
+
+       <button id="cell-53" class="cell"> 
+        <img id="img-cell-53" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+        width="45" height="45">
+        </button> 
+
+        <button id="cell-54" class="cell"> 
+            <img id="img-cell-54" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-55" class="cell"> 
+            <img id="img-cell-55" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-56" class="cell"> 
+            <img id="img-cell-56" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-57" class="cell"> 
+            <img id="img-cell-57" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-58" class="cell"> 
+            <img id="img-cell-58" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-59" class="cell"> 
+            <img id="img-cell-59" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-60" class="cell"> 
+            <img id="img-cell-60" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-61" class="cell"> 
+            <img id="img-cell-61" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-62" class="cell"> 
+            <img id="img-cell-62" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+
+        <button id="cell-63" class="cell"> 
+            <img id="img-cell-63" src="https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png"  
+            width="45" height="45">
+        </button>
+    </div>
+
+    <!-- Display dels botons per seleccionar el modo de simulador -->
+    <div class="contenedor-bot">
+        <button id="InfiniteFood" class="options"> Infinite food </button>
+        <button id="LimitedFood" class="options"> Limited food </button>
+        <button id="Predator" class="options"> Predator </button>
+    </div>
+
+    <!-- Codi del boto "How to use?" i la seva corresponent resposta-->
+    <div class="overlay" id="overlay">
+        <div class="popup" id="popup">
+            <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+            <h3>Population simulator</h3>
+            <h4>How to use?</h4>
+            <form action="">
+                <div class="contenedor-inputs">
+                    <p>
+                        This simulator has 3 modes. <br /><br />
+                        By clicking the "Infinite food" button, a simulation will start where bunnies 
+                        have access to infinite food. <br /> <br />
+                        By clicking "Limited food", a simulation will start where the bunnies have 
+                        limited food and therefore die or reproduce depending on how much food they get.
+                        <br /> <br />
+                        By clicking "Predator", a simulation will start where not only bunnies have limited 
+                        food but also there are wolfs which try to eat bunnies. 
+                        <br />
+                    </p>
+                </div>
+                <button id="btn-start" class="btn-start">
+                    <span class="button__text"> START! </span>
+                    <span class="button__icon">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </span>
+
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- includes dels fitxers de logica del simulador-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="script.js" defer></script>
+    <script src="infiniteFood.js" defer></script>
+    <script src="limitedFood.js" defer></script>
+    <script src="popup.js" defer></script>
+</body>
+
+</html>
