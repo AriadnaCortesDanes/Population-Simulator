@@ -3,6 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 let numBunny = 0;
+let numFood = 0;
 let day=0;
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
