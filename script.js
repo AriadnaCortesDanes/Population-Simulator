@@ -66,7 +66,6 @@ options.forEach((option) => {
 function infiniteFood() {
     numBunny = 10;
     spawn(10,numBunny);
-
     recTimeout(1);
 }
 
@@ -94,7 +93,7 @@ function recTimeout(day) {
 
         numBunny +=reproduceBunny;
         spawn(0,reproduceBunny);
-        setTimeout(recTimeout,1000,day+1);
+        setTimeout(recTimeout,100,day+1);
     }
 }
 
@@ -133,5 +132,7 @@ function paintBoard() {
     for(var i = 0; i < 64; i++) {
         if(board[i] === 0)document.getElementById("img-cell-" + i).src = grass;
         if(board[i] === 1)document.getElementById("img-cell-" + i).src = bunny;
+        if(board[i] === 2)document.getElementById("img-cell-" + i).src = food;
+        if(board[i] === 3)document.getElementById("img-cell-" + i).src = redBunny;
     }
 }
