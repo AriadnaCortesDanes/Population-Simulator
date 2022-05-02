@@ -29,15 +29,15 @@ options.forEach((option) => {
         let cInput = cOptions[Math.floor(Math.random() * 4)];*/
 
         if (pInput === "InfiniteFood") {
-            random_in();
+            spawn(1,1);
             infiniteFood();
         }
         else if (pInput === "LimitedFood") {
-            random_in();
+            spawn(1,1);
             limitedFood();
         }
         else if (pInput === "Predator") {
-            random_in();
+            spawn(1,1);
             predator();
         }
     });
