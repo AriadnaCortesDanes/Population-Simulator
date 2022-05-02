@@ -42,6 +42,7 @@ options.forEach((option) => {
         }
     });
 });
+
 function random_in(){
     for (let l = 0; l < 64; l++) {
         document.getElementById("img-cell-" + i).src = "https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png";
@@ -54,9 +55,10 @@ function random_in(){
     }
     document.getElementById("img-cell-" + j).src = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 }
+
 function infiniteFood() {
     
-    spawn(cell_bunny,10);
+    spawn(board,10,10);
 
     for(var i = 0; i < maxDays; i++) {
         paintBoard();
@@ -69,13 +71,14 @@ function limitedFood() {
 
 }
 
-function spawn(mat,numSpawns) {
+function spawn(board, numFood, numBunny) {
     
 }
 
 function paintBorard() {
     for(var i = 0; i < 64; ++i) {
-        if(cell_food === 1) document.getElementById("img-cell-" + i).src = food;
-        else if (cell_bunny === 1) document.getElementById("img-cell-" + i).src = bunny;
+        if(board === 1) document.getElementById("img-cell-" + i).src = food;
+        else if (board === 2) document.getElementById("img-cell-" + i).src = bunny;
+        else document.getElementById("img-cell-" + i).src = grass;
     }
 }
