@@ -118,7 +118,7 @@ function spawn(numFood, numBunny) {
             i=Math.floor(Math.random()*64);
         }
         board[i]=1;
-        document.getElementById("img-cell-" + i).src = bunny;
+        document.getElementById("img-cell-" + i).src = redBunny;
     }
     
 }
