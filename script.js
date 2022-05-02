@@ -2,6 +2,7 @@ const options = document.querySelectorAll(".options");
 
 let numDays = 0;
 const maxDays = 100;
+const food_new_bunny=5;
 let numBunny = 0;
 let numFood = 0;
 let day=0;
@@ -94,12 +95,14 @@ function recTimeout() {
                 if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
             } 
         }
-
+        /*
         numBunny +=reproduceBunny;
         var newFood = 0;
         numFood += newFood;
+        */
         spawn(newFood,reproduceBunny);
-        setTimeout(recTimeout,100,day+1);
+        day=day+1;
+        setTimeout(recTimeout,100);
     }
 }
 
@@ -122,7 +125,7 @@ function spawn(numFood, numBunny) {
             i=Math.floor(Math.random()*64);
         }
         board[i]=1;
-        food[i]=10;
+        food[i]=food_new_bunny;
         document.getElementById("img-cell-" + i).src = bunny;
     }
     
