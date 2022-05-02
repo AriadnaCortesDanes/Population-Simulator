@@ -9,8 +9,8 @@ board = [
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 1, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,1 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
@@ -47,7 +47,7 @@ options.forEach((option) => {
 
         if (pInput === "InfiniteFood") {
             iniBoard();
-            spawn(1,1);
+            //spawn(1,1);
             infiniteFood();
         }
         else if (pInput === "LimitedFood") {
@@ -65,7 +65,7 @@ options.forEach((option) => {
 
 function infiniteFood() {
     numBunny = 10;
-    //spawn(10,numBunny);
+    spawn(10,numBunny);
 
     recTimeout(1);
 }
@@ -82,7 +82,7 @@ function recTimeout(day) {
             if(board[i] === 1) {
                 //bunnyMoves(i);
                 bunny_food[i]--;
-                //if(bunny_food[i] === 0) board[i] = 0; //si el bunny no menja mor
+                if(bunny_food[i] === 0) board[i] = 0; //si el bunny no menja mor
             }
             if(board[i] === 3) {
                 //el bunny es reprodueix i el desAlimentem en 1
@@ -93,8 +93,8 @@ function recTimeout(day) {
         }
 
         numBunny +=reproduceBunny;
-        //spawn(0,reproduceBunny);
-        setTimeout(recTimeout(day+1),100);
+        spawn(0,reproduceBunny);
+        setTimeout(recTimeout,1000,day+1);
     }
 }
 
@@ -108,7 +108,7 @@ function spawn(numFood, numBunny) {
         while(board[i] > 0){
             i=Math.floor(Math.random()*64);
         }
-        board[i]=1;
+        board[i]=2;
         document.getElementById("img-cell-" + i).src = food;
     }
     for (var l = 0; l < numBunny; l++) {
@@ -116,7 +116,7 @@ function spawn(numFood, numBunny) {
         while(board[i] > 0){
             i=Math.floor(Math.random()*64);
         }
-        board[i]=2;
+        board[i]=1;
         document.getElementById("img-cell-" + i).src = bunny;
     }
     
@@ -129,3 +129,9 @@ function iniBoard() {
     }
 }
 
+function paintBoard() {
+    for(var i = 0; i < 64; i++) {
+        if(board[i] === 0)document.getElementById("img-cell-" + i).src = grass;
+        if(board[i] === 1)document.getElementById("img-cell-" + i).src = bunny;
+    }
+}
