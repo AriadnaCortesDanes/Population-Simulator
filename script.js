@@ -72,11 +72,10 @@ function infiniteFood() {
     numBunny = 10;
     numFood = 10;
     spawn(numFood,numBunny);
-    recTimeout(1);
+    recTimeout();
 }
 
 function recTimeout() {
-
     if(day < maxDays) {
         var reproduceBunny = 0;
         paintBoard();
@@ -123,7 +122,8 @@ function spawn(numFood, numBunny) {
             i=Math.floor(Math.random()*64);
         }
         board[i]=1;
-        document.getElementById("img-cell-" + i).src = redBunny;
+        food[i]=10;
+        document.getElementById("img-cell-" + i).src = bunny;
     }
     
 }
