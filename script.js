@@ -168,9 +168,18 @@ function recTimeout() {
         for (var i = 0; i < 64; i++) {
 
             if(board[i] === 1) {
-                bunnyMoves(i);
-                console.log(i);
                 bunny_food[i]--;
+                if(bunny_food[i] === 0){
+                    board[i] = 0; //si el bunny no menja mor
+                    console.log("Dead Bunny");
+                }
+                else {
+                    bunnyMoves(i);
+                }
+                console.log("pos");
+                console.log(i);
+                console.log("comida");
+                console.log(bunny_food[i]);
                 if(bunny_food[i] === 0){
                     board[i] = 0; //si el bunny no menja mor
                     console.log("Dead Bunny");
