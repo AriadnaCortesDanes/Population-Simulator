@@ -56,21 +56,23 @@ function limitedFood() {
 }
 
 function spawn(numFood, numBunny) {
+    /*
     for (let l = 0; l < 64; l++) {
         document.getElementById("img-cell-" + l).src = grass;
     }
+    */
     for (let l = 0; l < numFood; l++) {
         var i=Math.floor(Math.random()*64);
         while(board[i]===0){
             bord[i]=1;
-            document.getElementById("img-cell-" + i).src = grass;
+            document.getElementById("img-cell-" + i).src = food
         }
     }
     for (let l = 0; l < numBunny; l++) {
         var i=Math.floor(Math.random()*64);
         while(board[i]===0){
             bord[i]=2;
-            document.getElementById("img-cell-" + i).src = grass;
+            document.getElementById("img-cell-" + i).src = bunny;
         }
     }
     
