@@ -3,7 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 
-// 0 if grass, 1 if bunny, 2 if food
+// 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
 board = [ 
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
@@ -29,15 +29,12 @@ options.forEach((option) => {
         let cInput = cOptions[Math.floor(Math.random() * 4)];*/
 
         if (pInput === "InfiniteFood") {
-            spawn(1,1);
             infiniteFood();
         }
         else if (pInput === "LimitedFood") {
-            spawn(1,1);
             limitedFood();
         }
         else if (pInput === "Predator") {
-            spawn(1,1);
             predator();
         }
     });
@@ -47,11 +44,11 @@ function infiniteFood() {
     
     spawn(board,10,10);
 
-    for(var i = 0; i < maxDays; i++) {
-        paintBoard();
+    paintBoard();
+    for (var i = 0; i < 64; i++) {
+        if(board[i] === 1);
     }
-    var i =0;
-    document.getElementById("img-cell-" + i).src = redBunny;
+    setTimeout(recTimeout(day+1),100);
 }
 
 function limitedFood() {
@@ -79,10 +76,11 @@ function spawn(numFood, numBunny) {
     
 }
 
-function paintBorard() {
-    for(var i = 0; i < 64; ++i) {
-        if(board === 1) document.getElementById("img-cell-" + i).src = food;
-        else if (board === 2) document.getElementById("img-cell-" + i).src = bunny;
+function paintBoard() {
+    for(var i = 0; i < 64; i++) {
+        if(board[i] === 1) document.getElementById("img-cell-" + i).src = bunny;
+        else if (board[i] === 2) document.getElementById("img-cell-" + i).src = food;
+        else if (board[i] === 3) document.getElementById("img-cell-" + i).src = redBunny;
         else document.getElementById("img-cell-" + i).src = grass;
     }
 }
