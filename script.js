@@ -69,53 +69,6 @@ options.forEach((option) => {
         }
     });
 });
-
-function infiniteFood() {
-    numBunny = 10;
-    numFood = 10;
-    spawn(numFood,numBunny);
-    recTimeout();
-}
-
-function recTimeout() {
-    if(day < maxDays) {
-        var reproduceBunny = 0;
-        paintBoard();
-        for (var i = 0; i < 64; i++) {
-
-            if(board[i] === 1) {
-                //bunnyMoves(i);
-                bunny_food[i]--;
-                if(bunny_food[i] === 0){
-                    board[i] = 0; //si el bunny no menja mor
-                    console.log("Dead Bunny");
-                }
-            }
-            if(board[i] === 3) {
-                //el bunny es reprodueix i el desAlimentem en 1
-                //bunnyMoves(i);
-                reproduceBunny++;
-                bunny_food[i]-=2;
-                if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
-            } 
-        }
-        var newFood = 0;
-        /*
-        numBunny +=reproduceBunny;
-        var newFood = 0;
-        numFood += newFood;
-        */
-        spawn(newFood,reproduceBunny);
-        console.log(day);
-        day=day+1;
-        setTimeout(recTimeout,100);
-    }
-}
-
-function limitedFood() {
-
-}
-
 function spawn(numFood, numBunny) {
     for (var l = 0; l < numFood; l++) {
         var i=Math.floor(Math.random()*64);
@@ -152,7 +105,10 @@ function paintBoard() {
         if(board[i] === 3)document.getElementById("img-cell-" + i).src = redBunny;
     }
 }
-function move(x,x1){
+function pos_val(x){
+    return x>=0 && x<64 && board[x]!=1;
+}
+function move_conej(x,x1){
     if(board[x1]===0){
         board[x]=0;
         board[x1]=1;
@@ -166,4 +122,81 @@ function move(x,x1){
         bunny_food[x1]=bunny_food[x]+gan_comer;
         bunny_food[x]=0;
     }
+}
+function bunnyMoves(x){
+    if(pos_val(x+8) && board[x+8] === 2){
+        move_conej(x,x+8);
+    }
+    else if(pos_val(x-8) && board[x-8] === 2){
+        move_conej(x,x-8);
+    }
+    else if(pos_val(x-1) && x % 8 !=0 && board[x-1] === 2){
+        move_conej(x,x-1);
+    }
+    else if(pos_val(x+1) && x % 9 !=0 &&board[x+1] === 2){
+        move_conej(x,x+1);
+    }
+    else{
+        var i=Math.floor(Math.random()*4);
+        if(i===0 && pos_val(x+8)){
+            move_conej(x,x+8);
+        }
+        else if(i===2 && pos_val(x-8)){
+            move_conej(x,x-8);
+        }
+        else if(i===3 && pos_val(x+1) && x % 0 !=0){
+            move_conej(x,x+1);
+        }
+        else if(i===1 && pos_val(x-1) && x % 8 !=0){
+            move_conej(x,x-1);
+        }
+
+    }
+}
+
+function infiniteFood() {
+    numBunny = 1;
+    numFood = 2;
+    spawn(numFood,numBunny);
+    recTimeout();
+}
+
+function recTimeout() {
+    if(day < maxDays) {
+        var reproduceBunny = 0;
+        paintBoard();
+        for (var i = 0; i < 64; i++) {
+
+            if(board[i] === 1) {
+                bunnyMoves(i);
+                console.log(i);
+                bunny_food[i]--;
+                if(bunny_food[i] === 0){
+                    board[i] = 0; //si el bunny no menja mor
+                    console.log("Dead Bunny");
+                }
+            }
+            if(board[i] === 3) {
+                //el bunny es reprodueix i el desAlimentem en 1
+                //bunnyMoves(i);
+                reproduceBunny++;
+                bunny_food[i]-=2;
+                if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
+            } 
+        }
+        var newFood = 0;
+        /*
+        numBunny +=reproduceBunny;
+        var newFood = 0;
+        numFood += newFood;
+        */
+        spawn(newFood,reproduceBunny);
+        //console.log(day);
+        day=day+1;
+        setTimeout(recTimeout,1000);
+    }
+}
+
+function limitedFood() {
+
 }
