@@ -3,18 +3,8 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 
-cell_food = [ 
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-]
-
-cell_bunny = [ 
+// 0 if grass, 1 if bunny, 2 if food
+board = [ 
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
