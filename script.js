@@ -45,7 +45,7 @@ let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65a
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 let bunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025641_960_720.png";
 let grass = "https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png";
-let wolf = "https://cdn.pixabay.com/photo/2022/02/03/18/47/fox-6991099_960_720.png";
+let wolf = "https://illustoon.com/photo/370.png";
 
 options.forEach((option) => {
     option.addEventListener("click", function() {
@@ -67,7 +67,7 @@ options.forEach((option) => {
             limitedFood();
         }
         else if (pInput === "Predator") {
-            predator();
+            predators();
         }
         /*
         else if (pInput === "flecha") {
@@ -387,7 +387,7 @@ function limitedFood() {
     recTimeout_limited();
 }
 
-function predator() {
+function predators() {
     initialBunnies = 5;
     initialFood = 15;
     initialWolfs = 1;
