@@ -181,11 +181,12 @@ function recTimeout_limited() {
                 board[i] = 0; //si el bunny no menja mor
             }
             else {
-                bunnyMoves(i);
+                
                 if(bunny_food[i] > 15) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceBunny++;
                 }
+                bunnyMoves(i);
             }
             //console.log("pos");
             //console.log(i);
@@ -196,7 +197,7 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,50);
+        setTimeout(recTimeout_limited,500);
     }
     else {
         numBunny = 0;
