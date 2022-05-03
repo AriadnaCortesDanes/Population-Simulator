@@ -2,11 +2,11 @@ const options = document.querySelectorAll(".options");
 
 let numDays = 0;
 const maxDays = 100;
-const food_new_bunny=10;
-const gan_comer=6;
-const energ_repro=15;
-const food_new_wolf=10;
-const gan_comer_wolf=8;
+const food_new_bunny=5;
+const gan_comer=7;
+const energ_repro=12;
+const food_new_wolf=8;
+const gan_comer_wolf=7;
 const energ_repro_wolf=15;
 let numWolf = 0; 
 let numBunny = 0;
@@ -175,7 +175,7 @@ function bunnyMoves(x){
     else if(pos_val(x-1) && x % 8 !=0 && board[x-1] === 2){
         move_conej(x,x-1);
     }
-    else if(pos_val(x+1) && x % 9 !=0 &&board[x+1] === 2){
+    else if(pos_val(x+1) && x % 7 !=0 &&board[x+1] === 2){
         move_conej(x,x+1);
     }
     else{
@@ -186,7 +186,7 @@ function bunnyMoves(x){
         else if(i===2 && pos_val(x-8)){
             move_conej(x,x-8);
         }
-        else if(i===3 && pos_val(x+1) && x % 0 !=0){
+        else if(i===3 && pos_val(x+1) && x % 7 !=0){
             move_conej(x,x+1);
         }
         else if(i===1 && pos_val(x-1) && x % 8 !=0){
@@ -245,7 +245,7 @@ function wolfMoves(x){
     else if (pos_val_wolf(x-1) && x % 8 !=0 && (board[x-1] === 1)){
         move_wolf(x,x-1);
     }
-    else if(pos_val_wolf(x+1) && x % 9 !=0 && (board[x+1] === 1 )){
+    else if(pos_val_wolf(x+1) && x % 7!=0 && (board[x+1] === 1 )){
         move_wolf(x,x+1);
     }
     else{
@@ -257,7 +257,7 @@ function wolfMoves(x){
         else if(i===2 && pos_val_wolf(x-8)){
             move_wolf(x,x-8);
         }
-        else if(i===3 && pos_val_wolf(x+1) && x % 0 !=0){
+        else if(i===3 && pos_val_wolf(x+1) && x % 7!=0){
             move_wolf(x,x+1);
         }
         else if(i===1 && pos_val_wolf(x-1) && x % 8 !=0){
@@ -399,7 +399,7 @@ function recTimeout_predator() {
                 if(bunny_food[i] > energ_repro_wolf) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceWolf++;
-                    bunny_food[i]=bunny_food[i]-food_new_wolf;
+                    bunny_food[i]=bunny_food[i]-food_new_wolf-2;
                     //board[i] = 4;
                 }
                 wolfMoves(i);
