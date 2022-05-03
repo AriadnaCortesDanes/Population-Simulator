@@ -46,16 +46,16 @@ options.forEach((option) => {
         const pInput = this.id;
         day=0;
         iniBoard();
-
+        /*
         var infinite = document.getElementById("InfiniteFood");
         infinite.disabled = false;
         var predator = document.getElementById("Predator");
         predator.disabled = false;
         var limited = document.getElementById("LimitedFood");
         limited.disabled = false;
-
+*/
         if (pInput === "InfiniteFood") {
-            infiniteFood()
+            infiniteFood();
         }
         else if (pInput === "LimitedFood") {
             limitedFood();
@@ -67,10 +67,11 @@ options.forEach((option) => {
         else if (pInput === "flecha") {
             recTimeout()
         }
-        */
+        
         infinite.disabled = true;
         predator.disabled = true;
         limited.disabled = true;
+        */
     });
 });
 function spawn(numFood, numBunny) {
@@ -195,7 +196,7 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,500);
+        setTimeout(recTimeout_limited,50);
     }
     else {
         numBunny = 0;
