@@ -207,7 +207,7 @@ function recTimeout_limited() {
     paintBoard();
 }
 
-function recTimeout_limited() {
+function recTimeout_infinite() {
     if(day < maxDays) {
         var reproduceBunny = 0;
         var B=[];
