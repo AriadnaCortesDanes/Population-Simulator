@@ -96,7 +96,7 @@ options.forEach((option) => {
 function spawn(numeroFood, numeroBunny) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroBunny; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -110,7 +110,7 @@ function spawn(numeroFood, numeroBunny) {
     }
 
     for (var l = 0; l < numeroFood; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -124,7 +124,7 @@ function spawn(numeroFood, numeroBunny) {
 function spawn_wolfs(numeroWolf) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroWolf; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -272,6 +272,7 @@ function recTimeout_infinite() {
             bunny_food[i]--;
             if(bunny_food[i] === 0){
                 board[i] = 0; //si el bunny no menja mor
+                numBunny--;
             }
             else {
                 
@@ -347,16 +348,16 @@ function recTimeout_predator() {
         while(W.length>0){
             var i= W.pop();
             //if(board[i] === 1) {
-            wolf_food[i]--;
-            if(wolf_food[i] === 0){
+            bunny_food[i]--;
+            if(bunny_food[i] === 0){
                 board[i] = 0; //si el bunny no menja mor
             }
             else {
                 
-                if(wolf_food[i] > energ_repro_wolf) {
+                if(bunny_food[i] > energ_repro_wolf) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceWolf++;
-                    wolf_food[i]=wolf_food[i]-food_new_wolf;
+                    bunny_food[i]=bunny_food[i]-food_new_wolf;
                     board[i] = 4;
                 }
                 wolfMoves(i);
@@ -367,7 +368,7 @@ function recTimeout_predator() {
             console.log(bunny_food[i]);
         }
 
-        var newFood = 64;
+        var newFood = 2;
         spawn(newFood,reproduceBunny);
         spawn_wolfs(reproduceWolf);
         //console.log(day);
@@ -393,7 +394,7 @@ function infiniteFood() {
     initialBunnies = 3;
     initialFood = 10;
     spawn(initialFood,initialBunnies);
-    //recTimeout_infinite();
+    recTimeout_infinite();
 }
 
 function limitedFood() {
