@@ -5,8 +5,8 @@ const maxDays = 100;
 const food_new_bunny=10;
 const gan_comer=6;
 const energ_repro=15;
-let numBunny = 0;
-let numFood = 0;
+let numeroBunny = 0;
+let numeroFood = 0;
 let day=0;
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
@@ -74,23 +74,30 @@ options.forEach((option) => {
 });
 function spawn(numFood, numBunny) {
     //podriem posar una variable max per a controlar que no es passi de 64
-    for (var l = 0; l < numFood; l++) {
-        var i=Math.floor(Math.random()*64);
-        while(board[i] > 0){
-            i=Math.floor(Math.random()*64);
-        }
-        board[i]=2;
-        document.getElementById("img-cell-" + i).src = food;
-    }
     for (var l = 0; l < numBunny; l++) {
-        var i=Math.floor(Math.random()*64);
-        while(board[i] > 0){
-            i=Math.floor(Math.random()*64);
+        if(numeroBunny+numeroFood<65){
+            var i=Math.floor(Math.random()*64);
+            while(board[i] > 0){
+                i=Math.floor(Math.random()*64);
+            }
+            board[i]=1;
+            numeroBunny=numeroBunny+1;
+            bunny_food[i]=food_new_bunny;
+            document.getElementById("img-cell-" + i).src = bunny;
+            console.log("spawn Bunny");
         }
-        board[i]=1;
-        bunny_food[i]=food_new_bunny;
-        document.getElementById("img-cell-" + i).src = bunny;
-        console.log("spawn Bunny");
+    }
+
+    for (var l = 0; l < numFood; l++) {
+        if(numeroBunny+numeroFood<65){
+            var i=Math.floor(Math.random()*64);
+            while(board[i] > 0){
+                i=Math.floor(Math.random()*64);
+            }
+            numeroFood=numeroFood+1;
+            board[i]=2;
+            document.getElementById("img-cell-" + i).src = food;
+        }
     }
 }
 
