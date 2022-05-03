@@ -3,7 +3,8 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 const food_new_bunny=10;
-const gan_comer=5;
+const gan_comer=7;
+const energ_repro=15;
 let numBunny = 0;
 let numFood = 0;
 let day=0;
@@ -128,6 +129,9 @@ function move_conej(x,x1){
         board[x1]=1;
         bunny_food[x1]=bunny_food[x]+gan_comer;
         bunny_food[x]=0;
+        if(bunny_food[x1]>(energ_repro+1)){
+            board[x1]=3;
+        }
     }
 }
 function bunnyMoves(x){
@@ -170,7 +174,7 @@ function recTimeout_limited() {
         var reproduceBunny = 0;
         var B=[];
         for (var i = 0; i < 64; i++) {
-            if(board[i] === 1) {
+            if(board[i] === 1 || board[i] === 3) {
                 B.push(i)
             }
         }
@@ -183,16 +187,18 @@ function recTimeout_limited() {
             }
             else {
                 
-                if(bunny_food[i] > 15) {
+                if(bunny_food[i] > energ_repro) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceBunny++;
+                    bunny_food[i]=bunny_food[i]-10;
+                    board[i] =1;
                 }
                 bunnyMoves(i);
             }
-            //console.log("pos");
-            //console.log(i);
-            //console.log("comida");
-            //console.log(bunny_food[i]);
+            console.log("pos");
+            console.log(i);
+            console.log("comida");
+            console.log(bunny_food[i]);
         }
         var newFood = 1;
         spawn(newFood,reproduceBunny);
