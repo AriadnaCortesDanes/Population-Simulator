@@ -29,18 +29,6 @@ body {
 	cursor: pointer;
 	transition: .3s ease all;
 	cursor: pointer;
-    /*
-	display: inline-flex;
-	padding: 8px;
-	background: #009578;
-	border: none;
-	outline: none;
-	border-radius: 15px;
-	overflow: hidden;
-	font-size: 25px;
-	font-weight: 500;
-	cursor: pointer;
-    */
 }
 
 .options:hover {
@@ -49,19 +37,6 @@ body {
 
 .options:active {
 	background: #006e58;
-}
-
-.buttonResult {
-	display: inline-flex;
-	padding: 8px;
-	background: #877777;
-	border: none;
-	outline: none;
-	border-radius: 5px;
-	overflow: hidden;
-	font-size: 25px;
-	font-weight: 500;
-	cursor: pointer;
 }
 
 .btn-count {
