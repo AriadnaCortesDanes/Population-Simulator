@@ -80,7 +80,7 @@ options.forEach((option) => {
 function spawn(numeroFood, numeroBunny) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroBunny; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -94,7 +94,7 @@ function spawn(numeroFood, numeroBunny) {
     }
 
     for (var l = 0; l < numeroFood; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -108,7 +108,7 @@ function spawn(numeroFood, numeroBunny) {
 function spawn_wolfs(numeroWolf) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroWolf; l++) {
-        if(numBunny+numFood+numWolf<65){
+        if(numBunny+numFood+numWolf<64){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
