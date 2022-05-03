@@ -234,16 +234,18 @@ function wolfMoves(x){
     console.log(board[x-1]);
     */
 
-    if(pos_val_wolf(x+8) && (board[x+8] === 1  || board[x+8] === 3)){
+    //|| board[x+8] === 3
+
+    if(pos_val_wolf(x+8) && (board[x+8] === 1)){
         move_wolf(x,x+8);
     }
-    else if(pos_val_wolf(x-8) && (board[x-8] === 1 && board[x+8] === 3)){
+    else if(pos_val_wolf(x-8) && (board[x-8] === 1)){
         move_wolf(x,x-8);
     }
-    else if (pos_val_wolf(x-1) && x % 8 !=0 && (board[x-1] === 1 || board[x+8] === 3)){
+    else if (pos_val_wolf(x-1) && x % 8 !=0 && (board[x-1] === 1)){
         move_wolf(x,x-1);
     }
-    else if(pos_val_wolf(x+1) && x % 9 !=0 && (board[x+1] === 1 || board[x+8] === 3)){
+    else if(pos_val_wolf(x+1) && x % 9 !=0 && (board[x+1] === 1 )){
         move_wolf(x,x+1);
     }
     else{
@@ -474,7 +476,7 @@ function limitedFood() {
 function predators() {
     initialBunnies = 5;
     initialFood = 15;
-    initialWolfs = 1;
+    initialWolfs = 2;
     spawn(initialFood,initialBunnies);
     spawn_wolfs(initialWolfs);
     recTimeout_predator();
