@@ -47,14 +47,14 @@ options.forEach((option) => {
         const pInput = this.id;
         day=0;
         iniBoard();
-        /*
+        
         var infinite = document.getElementById("InfiniteFood");
-        infinite.disabled = false;
+        infinite.disabled = true;
         var predator = document.getElementById("Predator");
-        predator.disabled = false;
+        predator.disabled = true;
         var limited = document.getElementById("LimitedFood");
-        limited.disabled = false;
-*/
+        limited.disabled = true;
+
         if (pInput === "InfiniteFood") {
             infiniteFood();
         }
@@ -68,11 +68,8 @@ options.forEach((option) => {
         else if (pInput === "flecha") {
             recTimeout()
         }
-        
-        infinite.disabled = true;
-        predator.disabled = true;
-        limited.disabled = true;
         */
+       console.log("fin");
     });
 });
 function spawn(numFood, numBunny) {
@@ -165,10 +162,6 @@ function bunnyMoves(x){
     }
 }
 
-function infiniteFood() {
-    
-}
-
 function recTimeout_limited() {
     if(day < maxDays) {
         var reproduceBunny = 0;
@@ -204,14 +197,24 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,500);
+        setTimeout(recTimeout_limited,50);
     }
     else {
         numBunny = 0;
         numFood = 0;
         iniBoard();
+        var infinite = document.getElementById("InfiniteFood");
+        infinite.disabled = false;
+        var predator = document.getElementById("Predator");
+        predator.disabled = false;
+        var limited = document.getElementById("LimitedFood");
+        limited.disabled = false;
     }
     paintBoard();
+}
+
+function infiniteFood() {
+    
 }
 
 function limitedFood() {
