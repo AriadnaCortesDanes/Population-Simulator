@@ -6,7 +6,7 @@ const food_new_bunny=10;
 const gan_comer=6;
 const energ_repro=15;
 const food_new_wolf=10;
-const gan_comer_wolf=6;
+const gan_comer_wolf=8;
 const energ_repro_wolf=15;
 let numWolf = 0; 
 let numBunny = 0;
@@ -40,22 +40,6 @@ bunny_food = [
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
 ]
-/*
-si un wolf arriba a aliment 0, mor.
-si un wolf s'alimenta wolf_food val 10.
-wolf_food decreix un 1 cada dia.
-*/
-wolf_food = [ 
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-    0, 0, 0, 0, 0 ,0 ,0 , 0,
-]
-
 
 let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
@@ -96,7 +80,7 @@ options.forEach((option) => {
 function spawn(numeroFood, numeroBunny) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroBunny; l++) {
-        if(numBunny+numFood+numWolf<64){
+        if(numBunny+numFood+numWolf<65){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -110,7 +94,7 @@ function spawn(numeroFood, numeroBunny) {
     }
 
     for (var l = 0; l < numeroFood; l++) {
-        if(numBunny+numFood+numWolf<64){
+        if(numBunny+numFood+numWolf<65){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -124,7 +108,7 @@ function spawn(numeroFood, numeroBunny) {
 function spawn_wolfs(numeroWolf) {
     //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numeroWolf; l++) {
-        if(numBunny+numFood+numWolf<64){
+        if(numBunny+numFood+numWolf<65){
             var i=Math.floor(Math.random()*64);
             while(board[i] > 0){
                 i=Math.floor(Math.random()*64);
@@ -153,12 +137,17 @@ function paintBoard() {
         if(board[i] === 1)document.getElementById("img-cell-" + i).src = bunny;
         if(board[i] === 2)document.getElementById("img-cell-" + i).src = food;
         if(board[i] === 3)document.getElementById("img-cell-" + i).src = redBunny;
+        if(board[i] === 4)document.getElementById("img-cell-" + i).src = wolf;
     }
 }
 function pos_val(x){
     return x>=0 && x<64 && board[x]!=1;
 }
+function pos_val_wolf(x){
+    return x>=0 && x<64 && board[x]!=4;
+}
 function move_conej(x,x1){
+    
     if(board[x1]===0){
         board[x]=0;
         board[x1]=1;
@@ -207,6 +196,75 @@ function bunnyMoves(x){
     }
 }
 
+function move_wolf(x,x1){
+    if(board[x1] === 0){
+        board[x]=0;
+        board[x1]=4;
+        bunny_food[x1]=bunny_food[x];
+        bunny_food[x]=0;
+    }
+    else if(board[x1] === 2){
+        board[x]=0;
+        board[x1]=4;
+        bunny_food[x1]=bunny_food[x];
+        bunny_food[x]=0;
+    }
+    else if(board[x1] === 1 || board[x1] === 3){
+        --numBunny;
+        board[x]=0;
+        board[x1]=4;
+        bunny_food[x1]=bunny_food[x]+gan_comer_wolf;
+        bunny_food[x]=0;
+        /*
+        if(bunny_food[x1]>(energ_repro+1)){
+            board[x1]=3;
+        }
+        */
+    }
+    console.log("pos lovo");
+    console.log(x1);
+    console.log("comida");
+    console.log(bunny_food[x1]);
+}
+function wolfMoves(x){
+    /*
+    console.log(board[x-8]);
+    console.log(board[x+1]);
+    console.log(board[x-8]);
+    console.log(board[x-1]);
+    */
+
+    if(pos_val_wolf(x+8) && (board[x+8] === 1  || board[x+8] === 3)){
+        move_wolf(x,x+8);
+    }
+    else if(pos_val_wolf(x-8) && (board[x-8] === 1 && board[x+8] === 3)){
+        move_wolf(x,x-8);
+    }
+    else if (pos_val_wolf(x-1) && x % 8 !=0 && (board[x-1] === 1 || board[x+8] === 3)){
+        move_wolf(x,x-1);
+    }
+    else if(pos_val_wolf(x+1) && x % 9 !=0 && (board[x+1] === 1 || board[x+8] === 3)){
+        move_wolf(x,x+1);
+    }
+    else{
+        console.log("no mata lovo");
+        var i=Math.floor(Math.random()*4);
+        if(i===0 && pos_val_wolf(x+8)){
+            move_wolf(x,x+8);
+        }
+        else if(i===2 && pos_val_wolf(x-8)){
+            move_wolf(x,x-8);
+        }
+        else if(i===3 && pos_val_wolf(x+1) && x % 0 !=0){
+            move_wolf(x,x+1);
+        }
+        else if(i===1 && pos_val_wolf(x-1) && x % 8 !=0){
+            move_wolf(x,x-1);
+        }
+
+    }
+}
+
 function recTimeout_limited() {
     if(day < maxDays) {
         var reproduceBunny = 0;
@@ -243,7 +301,8 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,400);
+        paintBoard();
+        setTimeout(recTimeout_limited,1000);
     }
     else {
         numBunny = 0;
@@ -256,7 +315,6 @@ function recTimeout_limited() {
         var limited = document.getElementById("LimitedFood");
         limited.disabled = false;
     }
-    paintBoard();
 }
 function recTimeout_infinite() {
     if(day < maxDays) {
@@ -311,16 +369,44 @@ function recTimeout_infinite() {
 }
 function recTimeout_predator() {
     if(day < maxDays) {
+        /*
+        console.log("Board");
+        console.log(board);
+        */
         var reproduceBunny = 0;
         var reproduceWolf = 0;
         var B=[];
         var W =[];
+
+        for (var i = 0; i < 64; i++) {
+            if(board[i] === 4) {
+                W.push(i);
+            }
+        }
+
+        while(W.length>0){
+            var i= W.pop();
+            //if(board[i] === 1) {
+            bunny_food[i]--;
+            if(bunny_food[i] === 0){
+                board[i] = 0; //si el wolf no menja mor
+                numWolf--;
+            }
+            else {
+                
+                if(bunny_food[i] > energ_repro_wolf) {
+                    //Aixo dobla el bunny pero no li treu vida!
+                    reproduceWolf++;
+                    bunny_food[i]=bunny_food[i]-food_new_wolf;
+                    //board[i] = 4;
+                }
+                wolfMoves(i);
+            }
+        }
+
         for (var i = 0; i < 64; i++) {
             if(board[i] === 1 || board[i] === 3) {
                 B.push(i);
-            }
-            if(board[i] === 4) {
-                W.push(i);
             }
         }
         while(B.length>0){
@@ -341,34 +427,12 @@ function recTimeout_predator() {
                 }
                 bunnyMoves(i);
             }
+            /*
             console.log("pos");
             console.log(i);
             console.log("comida");
             console.log(bunny_food[i]);
-        }
-
-        while(W.length>0){
-            var i= W.pop();
-            //if(board[i] === 1) {
-            bunny_food[i]--;
-            if(bunny_food[i] === 0){
-                board[i] = 0; //si el bunny no menja mor
-                numWolf--;
-            }
-            else {
-                
-                if(bunny_food[i] > energ_repro_wolf) {
-                    //Aixo dobla el bunny pero no li treu vida!
-                    reproduceWolf++;
-                    bunny_food[i]=bunny_food[i]-food_new_wolf;
-                    board[i] = 4;
-                }
-                wolfMoves(i);
-            }
-            console.log("pos");
-            console.log(i);
-            console.log("comida");
-            console.log(bunny_food[i]);
+            */
         }
 
         var newFood = 2;
@@ -376,7 +440,8 @@ function recTimeout_predator() {
         spawn_wolfs(reproduceWolf);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_predator,400);
+        paintBoard();
+        setTimeout(recTimeout_predator,1000);
     }
     else {
         numBunny = 0;
@@ -390,7 +455,6 @@ function recTimeout_predator() {
         var limited = document.getElementById("LimitedFood");
         limited.disabled = false;
     }
-    paintBoard();
 }
 
 function infiniteFood() {
