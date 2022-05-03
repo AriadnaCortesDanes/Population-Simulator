@@ -3,7 +3,7 @@ const options = document.querySelectorAll(".options");
 let numDays = 0;
 const maxDays = 100;
 const food_new_bunny=10;
-const gan_comer=7;
+const gan_comer=6;
 const energ_repro=15;
 let numBunny = 0;
 let numFood = 0;
@@ -183,7 +183,7 @@ function recTimeout_limited() {
                 if(bunny_food[i] > energ_repro) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceBunny++;
-                    bunny_food[i]=bunny_food[i]-10;
+                    bunny_food[i]=bunny_food[i]-food_new_bunny;
                     board[i] =1;
                 }
                 bunnyMoves(i);
@@ -197,7 +197,7 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,50);
+        setTimeout(recTimeout_limited,400);
     }
     else {
         numBunny = 0;
