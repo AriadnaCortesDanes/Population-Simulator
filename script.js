@@ -83,7 +83,7 @@ options.forEach((option) => {
             limitedFood();
         }
         else if (pInput === "Predator") {
-            predator();
+            predators();
         }
         /*
         else if (pInput === "flecha") {
@@ -403,7 +403,7 @@ function limitedFood() {
     recTimeout_limited();
 }
 
-function predator() {
+function predators() {
     initialBunnies = 5;
     initialFood = 15;
     initialWolfs = 1;
