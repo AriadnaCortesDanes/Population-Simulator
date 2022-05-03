@@ -100,6 +100,7 @@ function iniBoard() {
     for(var i = 0; i < 64; i++) {
         document.getElementById("img-cell-" + i).src = grass;
         board[i]=0;
+        bunny_food[i]=0;
     }
 }
 
