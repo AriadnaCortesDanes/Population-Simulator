@@ -40,12 +40,28 @@ bunny_food = [
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
 ]
+/*
+si un wolf arriba a aliment 0, mor.
+si un wolf s'alimenta wolf_food val 10.
+wolf_food decreix un 1 cada dia.
+*/
+wolf_food = [ 
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+    0, 0, 0, 0, 0 ,0 ,0 , 0,
+]
+
 
 let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65ad91a19cfc6083e2a615b71ea3812-fruta-de-frambuesa-plana.png"
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 let bunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025641_960_720.png";
 let grass = "https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png";
-let wolf = "https://cdn.pixabay.com/photo/2022/02/03/18/47/fox-6991099_960_720.png";
+let wolf = "https://www.clipartmax.com/png/full/59-598213_wolf-puppy-howling-drawing-download-cute-baby-wolf-drawing.png";
 
 options.forEach((option) => {
     option.addEventListener("click", function() {
@@ -226,7 +242,7 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,400);
+        setTimeout(recTimeout_limited,40);
     }
     else {
         numBunny = 0;
@@ -377,7 +393,7 @@ function infiniteFood() {
     initialBunnies = 3;
     initialFood = 10;
     spawn(initialFood,initialBunnies);
-    recTimeout_infinite();
+    //recTimeout_infinite();
 }
 
 function limitedFood() {
