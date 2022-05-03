@@ -222,6 +222,7 @@ function recTimeout_limited() {
             bunny_food[i]--;
             if(bunny_food[i] === 0){
                 board[i] = 0; //si el bunny no menja mor
+                numBunny--;
             }
             else {
                 
@@ -328,6 +329,7 @@ function recTimeout_predator() {
             bunny_food[i]--;
             if(bunny_food[i] === 0){
                 board[i] = 0; //si el bunny no menja mor
+                numBunny--;
             }
             else {
                 
@@ -351,6 +353,7 @@ function recTimeout_predator() {
             bunny_food[i]--;
             if(bunny_food[i] === 0){
                 board[i] = 0; //si el bunny no menja mor
+                numWolf--;
             }
             else {
                 
