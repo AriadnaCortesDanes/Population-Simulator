@@ -5,11 +5,15 @@ const maxDays = 100;
 const food_new_bunny=10;
 const gan_comer=6;
 const energ_repro=15;
+const food_new_wolf=10;
+const gan_comer_wolf=6;
+const energ_repro_wolf=15;
+let numWolf = 0; 
 let numBunny = 0;
 let numFood = 0;
 let day=0;
 
-// 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny
+// 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny, 4 if wolf
 board = [ 
     0, 0, 0, 0, 0 ,0 ,0 , 0,
     0, 0, 0, 0, 0 ,0 ,0 , 0,
@@ -41,6 +45,7 @@ let food = "https://images.vexels.com/media/users/3/185280/isolated/preview/c65a
 let redBunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025642_960_720.png";
 let bunny = "https://cdn.pixabay.com/photo/2017/01/31/17/10/bunny-2025641_960_720.png";
 let grass = "https://image.spreadshirtmedia.net/image-server/v1/designs/154210948,width=178,height=178.png";
+let wolf = "https://cdn.pixabay.com/photo/2022/02/03/18/47/fox-6991099_960_720.png";
 
 options.forEach((option) => {
     option.addEventListener("click", function() {
@@ -93,6 +98,20 @@ function spawn(numFood, numBunny) {
         console.log("spawn Bunny");
     }
 }
+function spawn_wolfs(numeroWolf) {
+    //podriem posar una variable max per a controlar que no es passi de 64
+    for (var l = 0; l < numeroWolf; l++) {
+        var i=Math.floor(Math.random()*64);
+        while(board[i] > 0){
+            i=Math.floor(Math.random()*64);
+        }
+        board[i]=4;
+        bunny_food[i]=food_new_wolf;
+        document.getElementById("img-cell-" + i).src = wolf;
+        console.log("spawn wolf");
+    }
+}
+
 
 function iniBoard() {
     for(var i = 0; i < 64; i++) {
@@ -212,14 +231,13 @@ function recTimeout_limited() {
     }
     paintBoard();
 }
-
 function recTimeout_infinite() {
     if(day < maxDays) {
         var reproduceBunny = 0;
         var B=[];
         for (var i = 0; i < 64; i++) {
-            if(board[i] === 1) {
-                B.push(i)
+            if(board[i] === 1 || board[i] === 3) {
+                B.push(i);
             }
         }
         while(B.length>0){
@@ -231,22 +249,24 @@ function recTimeout_infinite() {
             }
             else {
                 
-                if(bunny_food[i] > 15) {
+                if(bunny_food[i] > energ_repro) {
                     //Aixo dobla el bunny pero no li treu vida!
                     reproduceBunny++;
+                    bunny_food[i]=bunny_food[i]-food_new_bunny;
+                    board[i] =1;
                 }
                 bunnyMoves(i);
             }
-            //console.log("pos");
-            //console.log(i);
-            //console.log("comida");
-            //console.log(bunny_food[i]);
+            console.log("pos");
+            console.log(i);
+            console.log("comida");
+            console.log(bunny_food[i]);
         }
-        var newFood = 1;
+        var newFood = 64;
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,50);
+        setTimeout(recTimeout_infinite,400);
     }
     else {
         numBunny = 0;
@@ -261,17 +281,107 @@ function recTimeout_infinite() {
     }
     paintBoard();
 }
+function recTimeout_predator() {
+    if(day < maxDays) {
+        var reproduceBunny = 0;
+        var reproduceWolf = 0;
+        var B=[];
+        var W =[];
+        for (var i = 0; i < 64; i++) {
+            if(board[i] === 1 || board[i] === 3) {
+                B.push(i);
+            }
+            if(board[i] === 4) {
+                W.push(i);
+            }
+        }
+        while(B.length>0){
+            var i=B.pop();
+            //if(board[i] === 1) {
+            bunny_food[i]--;
+            if(bunny_food[i] === 0){
+                board[i] = 0; //si el bunny no menja mor
+            }
+            else {
+                
+                if(bunny_food[i] > energ_repro) {
+                    //Aixo dobla el bunny pero no li treu vida!
+                    reproduceBunny++;
+                    bunny_food[i]=bunny_food[i]-food_new_bunny;
+                    board[i] =1;
+                }
+                bunnyMoves(i);
+            }
+            console.log("pos");
+            console.log(i);
+            console.log("comida");
+            console.log(bunny_food[i]);
+        }
+
+        while(W.length>0){
+            var i= W.pop();
+            //if(board[i] === 1) {
+            wolf_food[i]--;
+            if(wolf_food[i] === 0){
+                board[i] = 0; //si el bunny no menja mor
+            }
+            else {
+                
+                if(wolf_food[i] > energ_repro_wolf) {
+                    //Aixo dobla el bunny pero no li treu vida!
+                    reproduceWolf++;
+                    wolf_food[i]=wolf_food[i]-food_new_wolf;
+                    board[i] = 4;
+                }
+                wolfMoves(i);
+            }
+            console.log("pos");
+            console.log(i);
+            console.log("comida");
+            console.log(bunny_food[i]);
+        }
+
+        var newFood = 64;
+        spawn(newFood,reproduceBunny);
+        spawn_wolfs(reproduceWolf);
+        //console.log(day);
+        day=day+1;
+        setTimeout(recTimeout_predator,400);
+    }
+    else {
+        numBunny = 0;
+        numWolf = 0;
+        numFood = 0;
+        iniBoard();
+        var infinite = document.getElementById("InfiniteFood");
+        infinite.disabled = false;
+        var predator = document.getElementById("Predator");
+        predator.disabled = false;
+        var limited = document.getElementById("LimitedFood");
+        limited.disabled = false;
+    }
+    paintBoard();
+}
 
 function infiniteFood() {
-    numBunny = 3;
-    numFood = 10;
-    spawn(numFood,numBunny);
+    initialBunnies = 3;
+    initialFood = 10;
+    spawn(initialFood,initialBunnies);
     recTimeout_infinite();
 }
 
 function limitedFood() {
-    numBunny = 3;
-    numFood = 10;
-    spawn(numFood,numBunny);
+    initialBunnies = 3;
+    initialFood = 10;
+    spawn(initialFood,initialBunnies);
     recTimeout_limited();
+}
+
+function predator() {
+    initialBunnies = 5;
+    initialFood = 15;
+    initialWolfs = 1;
+    spawn(initialFood,initialBunnies);
+    spawn_wolfs(initialWolfs);
+    recTimeout_predator();
 }
