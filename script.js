@@ -304,7 +304,7 @@ function recTimeout_limited() {
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_limited,1000);
+        setTimeout(recTimeout_limited,600);
     }
     else {
         numBunny = 0;
@@ -354,7 +354,7 @@ function recTimeout_infinite() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_infinite,400);
+        setTimeout(recTimeout_infinite,600);
     }
     else {
         numBunny = 0;
@@ -443,7 +443,7 @@ function recTimeout_predator() {
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_predator,1000);
+        setTimeout(recTimeout_predator,600);
     }
     else {
         numBunny = 0;
