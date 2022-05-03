@@ -44,25 +44,23 @@ let grass = "https://image.spreadshirtmedia.net/image-server/v1/designs/15421094
 options.forEach((option) => {
     option.addEventListener("click", function() {
         const pInput = this.id;
+        day=0;
+        iniBoard();
 
-        /* RANDOM AND ARRAYS USEFULL INFORMATION
-        const cOptions = ["recarga", "escut", "dispara", "vidas"];
-        let cInput = cOptions[Math.floor(Math.random() * 4)];*/
+        var infinite = document.getElementById("InfiniteFood");
+        infinite.disabled = false;
+        var predator = document.getElementById("Predator");
+        predator.disabled = false;
+        var limited = document.getElementById("LimitedFood");
+        limited.disabled = false;
 
         if (pInput === "InfiniteFood") {
-            day=0;
-            iniBoard();
-            infiniteFood();
+            infiniteFood()
         }
         else if (pInput === "LimitedFood") {
-            day=0;
-            iniBoard();
             limitedFood();
         }
         else if (pInput === "Predator") {
-            day=0;
-            iniBoard();
-            spawn(1,1);
             predator();
         }
         /*
@@ -70,9 +68,13 @@ options.forEach((option) => {
             recTimeout()
         }
         */
+        infinite.disabled = true;
+        predator.disabled = true;
+        limited.disabled = true;
     });
 });
 function spawn(numFood, numBunny) {
+    //podriem posar una variable max per a controlar que no es passi de 64
     for (var l = 0; l < numFood; l++) {
         var i=Math.floor(Math.random()*64);
         while(board[i] > 0){
@@ -161,7 +163,7 @@ function infiniteFood() {
     
 }
 
-function recTimeout() {
+function recTimeout_limited() {
     if(day < maxDays) {
         var reproduceBunny = 0;
         var B=[];
@@ -185,35 +187,15 @@ function recTimeout() {
                 }
             }
             //console.log("pos");
-            console.log(i);
+            //console.log(i);
             //console.log("comida");
-            console.log(bunny_food[i]);
-            /*
-            if(bunny_food[i] === 0){
-                board[i] = 0; //si el bunny no menja mor
-                //console.log("Dead Bunny");
-            }
-            //}
-            
-            if(board[i] === 3) {
-                //el bunny es reprodueix i el desAlimentem en 1
-                //bunnyMoves(i);
-                reproduceBunny++;
-                bunny_food[i]-=2;
-                if(bunny_food < 6) board[i] = 1; //el tornem a convertir en un bunny sense alimentar
-            } 
-            */
+            //console.log(bunny_food[i]);
         }
         var newFood = 1;
-        /*
-        numBunny +=reproduceBunny;
-        var newFood = 0;
-        numFood += newFood;
-        */
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout,500);
+        setTimeout(recTimeout_limited,500);
     }
     else {
         numBunny = 0;
@@ -227,5 +209,5 @@ function limitedFood() {
     numBunny = 3;
     numFood = 10;
     spawn(numFood,numBunny);
-    recTimeout();
+    recTimeout_limited();
 }
