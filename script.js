@@ -242,7 +242,7 @@ function recTimeout_limited() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_limited,40);
+        setTimeout(recTimeout_limited,400);
     }
     else {
         numBunny = 0;
