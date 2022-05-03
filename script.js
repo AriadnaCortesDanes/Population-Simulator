@@ -220,8 +220,60 @@ function recTimeout_limited() {
     paintBoard();
 }
 
+function recTimeout_infinite() {
+    if(day < maxDays) {
+        var reproduceBunny = 0;
+        var B=[];
+        for (var i = 0; i < 64; i++) {
+            if(board[i] === 1) {
+                B.push(i)
+            }
+        }
+        while(B.length>0){
+            var i=B.pop();
+            //if(board[i] === 1) {
+            bunny_food[i]--;
+            if(bunny_food[i] === 0){
+                board[i] = 0; //si el bunny no menja mor
+            }
+            else {
+                
+                if(bunny_food[i] > 15) {
+                    //Aixo dobla el bunny pero no li treu vida!
+                    reproduceBunny++;
+                }
+                bunnyMoves(i);
+            }
+            //console.log("pos");
+            //console.log(i);
+            //console.log("comida");
+            //console.log(bunny_food[i]);
+        }
+        var newFood = 1;
+        spawn(newFood,reproduceBunny);
+        //console.log(day);
+        day=day+1;
+        setTimeout(recTimeout_limited,50);
+    }
+    else {
+        numBunny = 0;
+        numFood = 0;
+        iniBoard();
+        var infinite = document.getElementById("InfiniteFood");
+        infinite.disabled = false;
+        var predator = document.getElementById("Predator");
+        predator.disabled = false;
+        var limited = document.getElementById("LimitedFood");
+        limited.disabled = false;
+    }
+    paintBoard();
+}
+
 function infiniteFood() {
-    
+    numBunny = 3;
+    numFood = 10;
+    spawn(numFood,numBunny);
+    recTimeout_infinite();
 }
 
 function limitedFood() {
