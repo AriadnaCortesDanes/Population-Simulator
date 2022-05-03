@@ -12,6 +12,8 @@ let numWolf = 0;
 let numBunny = 0;
 let numFood = 0;
 let day=0;
+let vBunny = [];
+let vWolf = [];
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny, 4 if wolf
 board = [ 
@@ -51,6 +53,8 @@ options.forEach((option) => {
     option.addEventListener("click", function() {
         const pInput = this.id;
         day=0;
+        vBunny = [];
+        vWolf = [];
         iniBoard();
         
         var infinite = document.getElementById("InfiniteFood");
@@ -62,19 +66,22 @@ options.forEach((option) => {
 
         if (pInput === "InfiniteFood") {
             infiniteFood();
+            console.log(vBunny);
         }
         else if (pInput === "LimitedFood") {
             limitedFood();
+            console.log(vBunny);
         }
         else if (pInput === "Predator") {
             predators();
+            console.log(vBunny);
+            console.log(vWolf);
         }
         /*
         else if (pInput === "flecha") {
             recTimeout()
         }
         */
-       console.log("fin");
     });
 });
 function spawn(numeroFood, numeroBunny) {
@@ -89,7 +96,7 @@ function spawn(numeroFood, numeroBunny) {
             numBunny=numBunny+1;
             bunny_food[i]=food_new_bunny;
             document.getElementById("img-cell-" + i).src = bunny;
-            console.log("spawn Bunny");
+            //console.log("spawn Bunny");
         }
     }
 
@@ -117,7 +124,7 @@ function spawn_wolfs(numeroWolf) {
             bunny_food[i]=food_new_wolf;
             numWolf=numWolf+1;
             document.getElementById("img-cell-" + i).src = wolf;
-            console.log("spawn wolf");
+            //console.log("spawn wolf");
         }
     }
 }
@@ -221,10 +228,10 @@ function move_wolf(x,x1){
         }
         */
     }
-    console.log("pos lovo");
-    console.log(x1);
-    console.log("comida");
-    console.log(bunny_food[x1]);
+    //console.log("pos lovo");
+    //console.log(x1);
+    //console.log("comida");
+    //console.log(bunny_food[x1]);
 }
 function wolfMoves(x){
     /*
@@ -249,7 +256,7 @@ function wolfMoves(x){
         move_wolf(x,x+1);
     }
     else{
-        console.log("no mata lovo");
+        //console.log("no mata lovo");
         var i=Math.floor(Math.random()*4);
         if(i===0 && pos_val_wolf(x+8)){
             move_wolf(x,x+8);
@@ -269,6 +276,8 @@ function wolfMoves(x){
 
 function recTimeout_limited() {
     if(day < maxDays) {
+        vBunny.push(numBunny);
+        vWolf.push(numWolf);
         var reproduceBunny = 0;
         var B=[];
         for (var i = 0; i < 64; i++) {
@@ -294,17 +303,17 @@ function recTimeout_limited() {
                 }
                 bunnyMoves(i);
             }
-            console.log("pos");
-            console.log(i);
-            console.log("comida");
-            console.log(bunny_food[i]);
+            //console.log("pos");
+            //console.log(i);
+            //console.log("comida");
+            //console.log(bunny_food[i]);
         }
         var newFood = 1;
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_limited,600);
+        setTimeout(recTimeout_limited,60);
     }
     else {
         numBunny = 0;
@@ -320,6 +329,8 @@ function recTimeout_limited() {
 }
 function recTimeout_infinite() {
     if(day < maxDays) {
+        vBunny.push(numBunny);
+        vWolf.push(numWolf);
         var reproduceBunny = 0;
         var B=[];
         for (var i = 0; i < 64; i++) {
@@ -345,16 +356,16 @@ function recTimeout_infinite() {
                 }
                 bunnyMoves(i);
             }
-            console.log("pos");
-            console.log(i);
-            console.log("comida");
-            console.log(bunny_food[i]);
+            //console.log("pos");
+            //console.log(i);
+            //console.log("comida");
+            //console.log(bunny_food[i]);
         }
         var newFood = 64;
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_infinite,600);
+        setTimeout(recTimeout_infinite,60);
     }
     else {
         numBunny = 0;
@@ -371,6 +382,8 @@ function recTimeout_infinite() {
 }
 function recTimeout_predator() {
     if(day < maxDays) {
+        vBunny.push(numBunny);
+        vWolf.push(numWolf);
         /*
         console.log("Board");
         console.log(board);
@@ -443,7 +456,7 @@ function recTimeout_predator() {
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_predator,600);
+        setTimeout(recTimeout_predator,60);
     }
     else {
         numBunny = 0;
