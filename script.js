@@ -13,6 +13,7 @@ let numBunny = 0;
 let numFood = 0;
 let day=0;
 let vBunny = [];
+let vFood = [];
 let vWolf = [];
 
 // 0 if grass, 1 if bunny, 2 if food, 3 if feeded bunny, 4 if wolf
@@ -54,6 +55,7 @@ options.forEach((option) => {
         const pInput = this.id;
         day=0;
         vBunny = [];
+        vFood = [];
         vWolf = [];
         iniBoard();
         
@@ -71,6 +73,7 @@ options.forEach((option) => {
         else if (pInput === "LimitedFood") {
             limitedFood();
             console.log(vBunny);
+            console.log(vFood);
         }
         else if (pInput === "Predator") {
             predators();
@@ -277,6 +280,7 @@ function wolfMoves(x){
 function recTimeout_limited() {
     if(day < maxDays) {
         vBunny.push(numBunny);
+        vFood.push(numFood);
         vWolf.push(numWolf);
         var reproduceBunny = 0;
         var B=[];
@@ -313,7 +317,7 @@ function recTimeout_limited() {
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_limited,60);
+        setTimeout(recTimeout_limited,200);
     }
     else {
         numBunny = 0;
@@ -365,7 +369,7 @@ function recTimeout_infinite() {
         spawn(newFood,reproduceBunny);
         //console.log(day);
         day=day+1;
-        setTimeout(recTimeout_infinite,60);
+        setTimeout(recTimeout_infinite,200);
     }
     else {
         numBunny = 0;
@@ -456,7 +460,7 @@ function recTimeout_predator() {
         //console.log(day);
         day=day+1;
         paintBoard();
-        setTimeout(recTimeout_predator,60);
+        setTimeout(recTimeout_predator,400);
     }
     else {
         numBunny = 0;
